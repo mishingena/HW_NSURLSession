@@ -107,6 +107,7 @@
     FruitCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     Fruit *fruit = fruitArray[indexPath.row];
     cell.title.text = fruit.title;
+    if (!fruit.cachedImage) cell.imgView.image = nil; else cell.imgView.image = fruit.cachedImage;
     
     UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     [indicator setHidesWhenStopped:YES];
@@ -124,6 +125,7 @@
                 [indicator stopAnimating];
                 fruit.cachedImage = img;
                 cell.imgView.image = img;
+                
             });
         }] resume];
     }
